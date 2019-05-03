@@ -54,4 +54,19 @@ export const _saveDeckTitle = (title) => {
 }
 
 // add card to deck
-
+export const _addCardToDeck = (deck, card) => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            decks = {
+                ...decks,
+                [deck]: {
+                    ...decks[deck],
+                    questions: {
+                        ...decks[deck].questions,
+                        card
+                    }
+                }
+            }
+        }, 1000)
+    })
+}

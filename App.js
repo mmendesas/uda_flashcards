@@ -1,14 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+// redux
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+
 import DeckList from './components/DeckList'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <DeckList />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          <DeckList />
+        </View>
+      </Provider>
     );
   }
 }
