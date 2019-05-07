@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 class Deck extends Component {
   render() {
-    const { deck } = this.props
+    const { deck, navigation } = this.props
     const { title, questions } = deck
 
     return (
@@ -15,6 +15,7 @@ class Deck extends Component {
         <Text style={styles.number}>{questions.length} cards</Text>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: white }]}
+          onPress={() => navigation.navigate('NewCard', { title: deck.title })}
         >
           <Text>Add Card</Text>
         </TouchableOpacity>

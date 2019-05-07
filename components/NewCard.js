@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { black, white } from '../utils/colors'
 
+import { connect } from 'react-redux'
+import { addCard } from '../actions'
+import { addCardToDeck } from '../utils/api'
+
 class NewCard extends Component {
 
   state = {
@@ -10,8 +14,14 @@ class NewCard extends Component {
   }
 
   submit = () => {
-    console.log('submit', this.state)
-    this.setState(() => ({ title: '' }))
+    const { navigation, dispatch } = this.props
+    const { question, answer } = this.state
+    const { title } = navigation.state.params
+
+    addCardToDeck({ question, answer, key: title })
+      .then((deck) => dispatch(addCard(deck)))
+
+    this.setState(() => ({ question: '', answer: '' }))
   }
 
   isDisabled = () => {
@@ -68,4 +78,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default NewCard
+export default connect()(NewCard)

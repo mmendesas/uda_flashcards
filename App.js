@@ -11,6 +11,7 @@ import { black, white } from './utils/colors'
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList';
 import Deck from './components/Deck'
+import NewCard from './components/NewCard'
 
 const MyStatusBar = ({ backgroundColor, ...props }) => (
   <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
@@ -54,6 +55,9 @@ const MainNavigator = createStackNavigator({
   },
   Deck: {
     screen: Deck
+  },
+  NewCard: {
+    screen: NewCard
   }
 })
 

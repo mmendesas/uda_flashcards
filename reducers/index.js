@@ -1,35 +1,11 @@
 import {
   ADD_DECK,
-  RECEIVE_DECKS
+  RECEIVE_DECKS,
+  ADD_CARD
 } from '../actions/index'
 import { combineReducers } from 'redux'
 
-let initialState = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
-
-function decks(state = initialState, action) {
+function decks(state = {}, action) {
   switch (action.type) {
     case ADD_DECK:
       return {
@@ -41,6 +17,18 @@ function decks(state = initialState, action) {
       return {
         ...state,
         ...decks
+      }
+    case ADD_CARD:
+      const { question, answer, key } = action.card
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          questions: [
+            ...state[key].questions,
+            { question, answer }
+          ]
+        }
       }
     default:
       return state;
