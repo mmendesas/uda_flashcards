@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import { black, white } from '../utils/colors'
+
+import { saveDeckTitle, saveData, clearStorage } from '../utils/api'
+import { addDeck } from '../actions'
 
 class NewDeck extends Component {
 
@@ -9,7 +13,12 @@ class NewDeck extends Component {
   }
 
   submit = () => {
-    console.log('submit', this.state)
+    const { dispatch } = this.props
+    const { title } = this.state
+
+    saveDeckTitle(title)
+      .then((deck) => dispatch(addDeck(deck)))
+
     this.setState(() => ({ title: '' }))
   }
 
@@ -62,4 +71,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default NewDeck
+export default connect()(NewDeck)

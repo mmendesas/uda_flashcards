@@ -4,38 +4,61 @@ import { _getDecks } from '../utils/_data'
 const FLASHCARD_KEY = "uda_flashcards"
 
 export function getDeck(key) {
-    return AsyncStorage.getItem(FLASHCARD_KEY)
-        .then((res) => {
-            const data = JSON.parse(res);
-            console.log('key: ' + JSON.stringify(key))
-            console.log('data: ' + JSON.stringify(data))
-            if (data !== null) {
-                return data[key]
-            }
-            return undefined
-        })
+  return AsyncStorage.getItem(FLASHCARD_KEY)
+    .then((res) => {
+      const data = JSON.parse(res);
+      console.log('key: ' + JSON.stringify(key))
+      console.log('data: ' + JSON.stringify(data))
+      if (data !== null) {
+        return data[key]
+      }
+      return undefined
+    })
 }
 
 export function getDecks() {
-    return AsyncStorage.getItem(FLASHCARD_KEY)
-        .then((res) => {
-            return res;
-        })
+  return AsyncStorage.getItem(FLASHCARD_KEY)
+    .then((res) => {
+      return res;
+    })
 }
 
 export function addCardToDeck({ question, answer, key }) {
-    return AsyncStorage.getItem(FLASHCARD_KEY)
-        .then(data => {
-            data = JSON.parse(data)
-            let copy = data[key]
-            copy.questions = copy.questions.concat({ question: question, answer: answer });
+  return AsyncStorage.getItem(FLASHCARD_KEY)
+    .then(data => {
+      data = JSON.parse(data)
+      let copy = data[key]
+      copy.questions = copy.questions.concat({ question: question, answer: answer });
 
-            return AsyncStorage.mergeItem(FLASHCARD_KEY, JSON.stringify({
-                [key]: deck
-            }));
-        })
+      return AsyncStorage.mergeItem(FLASHCARD_KEY, JSON.stringify({
+        [key]: deck
+      }));
+    })
+}
+
+export function saveDeckTitle(title) {
+  return AsyncStorage.getItem(FLASHCARD_KEY)
+    .then(data => {
+      data = JSON.parse(data);
+      const newDeck = {
+        [title]: {
+          title: title,
+          questions: []
+        }
+      }
+      AsyncStorage.mergeItem(FLASHCARD_KEY, JSON.stringify({
+        ...data,
+        ...newDeck
+      }));
+
+      return newDeck
+    })
 }
 
 export function saveData(data) {
-    return AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(data))
+  return AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(data))
+}
+
+export function clearStorage() {
+  return AsyncStorage.clear()
 }
