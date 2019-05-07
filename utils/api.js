@@ -35,3 +35,7 @@ export function addCardToDeck({ question, answer, key }) {
             }));
         })
 }
+
+export function saveData(data) {
+    return AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(data))
+}
