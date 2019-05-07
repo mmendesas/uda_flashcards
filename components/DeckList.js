@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions';
@@ -18,27 +18,42 @@ class DeckList extends Component {
   }
 
   render() {
-    console.log("props", this.props)
+    const { decks } = this.props
 
     return (
-      <View>
-        <Text>DeckList</Text>
-        <ul>
-          {
-            this.state.decks.map(deck => {
-              console.log('deck', deck)
-              return <Text>{[deck]}</Text>
-            })
-          }
-        </ul>
-      </View>
+      <ScrollView style={styles.container}>
+        {
+          typeof decks !== 'undefined' && Object.keys(decks).map(key => (
+            <TouchableOpacity style={styles.container} key={key}>
+              <Text style={styles.title}>{decks[key].title}</Text>
+              <Text style={styles.number}>{decks[key].questions.length} cards</Text>
+            </TouchableOpacity>
+          ))
+        }
+      </ScrollView>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    borderBottomWidth: 1,
+    margin: 20
+  },
+  title: {
+    fontSize: 25,
+    alignSelf: 'center'
+  },
+  number: {
+    alignSelf: 'center',
+    marginBottom: 20
+  }
+})
+
+const mapStateToProps = ({ decks }) => {
   return {
-    decks: state.decks
+    decks
   }
 }
 

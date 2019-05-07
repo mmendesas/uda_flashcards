@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-import { getDecks } from '../utils/_data'
+import { _getDecks } from '../utils/_data'
 
 const FLASHCARD_KEY = "uda_flashcards"
 
