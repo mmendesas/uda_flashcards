@@ -13,6 +13,10 @@ class NewCard extends Component {
     answer: ''
   }
 
+  static navigationOptions = {
+    title: 'New Card',
+  };
+
   submit = () => {
     const { navigation, dispatch } = this.props
     const { question, answer } = this.state
@@ -32,6 +36,8 @@ class NewCard extends Component {
   render() {
     return (
       <View style={styles.container}>
+
+        <Text style={styles.message}>Setup your new card!</Text>
         <TextInput
           style={styles.input}
           placeholder='Type question here'
@@ -76,6 +82,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     width: 150,
     backgroundColor: black
+  },
+  message: {
+    fontSize: 35,
+    alignSelf: 'center',
+    textAlign: 'center',
+    width: 300
   },
 })
 

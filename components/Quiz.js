@@ -13,6 +13,10 @@ class Quiz extends Component {
     incorrect: 0
   }
 
+  static navigationOptions = {
+    title: 'Quiz',
+  };
+
   componentDidMount() {
     const { title } = this.props.navigation.state.params
     getDeck(title).then((deck) => {
@@ -93,7 +97,7 @@ class Quiz extends Component {
               {cardFlipped ? 'Question' : 'Answer'}
             </Text>
           </View>
-          <View style={{ marginTop: 150 }}>
+          <View>
             <TouchableOpacity
               style={[styles.button, { backgroundColor: green }]}
               onPress={() => this.answer(true)}

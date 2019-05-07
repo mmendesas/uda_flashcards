@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions';
+import { red } from '../utils/colors';
 
 class DeckList extends Component {
 
@@ -21,15 +22,21 @@ class DeckList extends Component {
     return (
       <ScrollView style={styles.container}>
         {
-          typeof decks !== 'undefined' && Object.keys(decks).map(key => (
+          typeof decks !== 'undefined' ? Object.keys(decks).map(key => (
             <TouchableOpacity
-              style={styles.container} key={key}
+              style={styles.deckItem} key={key}
               onPress={() => navigation.navigate('Deck', { title: key })}
             >
               <Text style={styles.title}>{decks[key].title}</Text>
               <Text style={styles.number}>{decks[key].questions.length} cards</Text>
             </TouchableOpacity>
-          ))
+          )) : (
+              <View style={styles.container}>
+                <Text style={[styles.title, { textAlign: "center", color: red }]}>
+                  You don't have decks, please use the NewDeck tab to create a new flash card deck!
+                </Text>
+              </View>
+            )
         }
       </ScrollView>
     )
@@ -39,6 +46,9 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 20
+  },
+  deckItem: {
     borderBottomWidth: 1,
     margin: 20
   },

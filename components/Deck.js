@@ -5,6 +5,11 @@ import { black, white, gray } from '../utils/colors'
 import { connect } from 'react-redux'
 
 class Deck extends Component {
+
+  static navigationOptions = {
+    title: 'Deck',
+  };
+
   render() {
     const { deck, navigation } = this.props
     const { title, questions } = deck

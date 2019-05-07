@@ -7,7 +7,7 @@ import { createMaterialTopTabNavigator, createAppContainer, createBottomTabNavig
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { black, white } from './utils/colors'
+import { black, white, green } from './utils/colors'
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList';
 import Deck from './components/Deck'
@@ -50,18 +50,48 @@ const TabNavigator = createMaterialTopTabNavigator({
     }
   })
 
+const headerStyle = {
+  headerStyle: {
+    backgroundColor: black,
+  },
+  headerTintColor: white,
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  }
+}
+
 const MainNavigator = createStackNavigator({
   Home: {
     screen: TabNavigator,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      title: 'FlashCards',
+      headerTitleStyle: {
+        textAlign: 'center'
+      },
+      ...headerStyle,
+    }
   },
   Deck: {
-    screen: Deck
+    screen: Deck,
+    navigationOptions: {
+      tabBarLabel: 'Deck',
+      ...headerStyle
+    }
   },
   NewCard: {
-    screen: NewCard
+    screen: NewCard,
+    navigationOptions: {
+      tabBarLabel: 'New Card',
+      ...headerStyle
+    }
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: {
+      tabBarLabel: 'Quiz',
+      ...headerStyle
+    }
   }
 })
 
