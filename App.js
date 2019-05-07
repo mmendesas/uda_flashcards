@@ -8,13 +8,14 @@ import reducer from './reducers'
 
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
+import NewDeck from './components/NewDeck'
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
-          <Quiz />
+          <NewDeck />
         </View>
       </Provider>
     );
