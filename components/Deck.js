@@ -54,11 +54,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = ({ decks }) => {
-  const deck = decks['React'] //change this later
-
+const mapStateToProps = ({ decks }, { navigation }) => {
+  const { title } = navigation.state.params
   return {
-    deck
+    deck: decks[title]
   }
 }
 
