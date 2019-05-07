@@ -21,6 +21,8 @@ class Deck extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: black }]}
+          onPress={() => navigation.navigate('Quiz', { title })}
+          disabled={questions.length === 0}
         >
           <Text style={{ color: white }}>Start Quiz</Text>
         </TouchableOpacity>

@@ -13,13 +13,14 @@ class NewDeck extends Component {
   }
 
   submit = () => {
-    const { dispatch } = this.props
+    const { dispatch, navigation } = this.props
     const { title } = this.state
 
     saveDeckTitle(title)
       .then((deck) => dispatch(addDeck(deck)))
 
     this.setState(() => ({ title: '' }))
+    navigation.navigate('Decks')
   }
 
   render() {

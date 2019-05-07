@@ -22,6 +22,7 @@ class NewCard extends Component {
       .then((deck) => dispatch(addCard(deck)))
 
     this.setState(() => ({ question: '', answer: '' }))
+    navigation.goBack()
   }
 
   isDisabled = () => {

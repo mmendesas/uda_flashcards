@@ -18,7 +18,6 @@ class DeckList extends Component {
   render() {
     const { decks, navigation } = this.props
 
-    console.log('mteste', this.props)
     return (
       <ScrollView style={styles.container}>
         {
