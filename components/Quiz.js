@@ -37,9 +37,10 @@ class Quiz extends Component {
     }))
   }
 
-  returnToHome = () => {
+  returnToDeck = () => {
     const { navigation } = this.props;
-    navigation.navigate('Home')
+    const { title } = navigation.state.params
+    navigation.navigate('Deck', { title })
   }
 
   resetQuiz = () => {
@@ -51,23 +52,29 @@ class Quiz extends Component {
   }
 
   render() {
-    const { cardFlipped, questions, questionIdx } = this.state;
+    const { cardFlipped, questions, questionIdx, correct } = this.state;
 
     if (questions.length === questionIdx) {
       return (
         <View style={styles.container}>
           <Text style={[styles.message, { color: black, marginBottom: 20 }]}>Congratulations, you completed this quiz!</Text>
+
+          <Text>Your score is:
+            <Text style={styles.score}>
+              {(correct / questions.length * 100).toFixed(2)}%
+            </Text>
+          </Text>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: black }]}
             onPress={this.resetQuiz}
           >
-            <Text style={styles.buttonText}>Take Quiz Again</Text>
+            <Text style={styles.buttonText}>Restart Quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: green }]}
-            onPress={this.returnToHome}
+            onPress={this.returnToDeck}
           >
-            <Text style={styles.buttonText}>Go Home</Text>
+            <Text style={styles.buttonText}>Go To Deck</Text>
           </TouchableOpacity>
         </View>
       )
@@ -150,8 +157,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10,
   },
-  endOfQuizText: {
-    fontWeight: "700"
+  score: {
+    fontWeight: "bold",
+    color: green,
+    fontSize: 20
   },
 })
 

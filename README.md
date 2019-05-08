@@ -15,6 +15,8 @@ _ I also pratice some new interactions with react-navigation
 
 In the project directory, you can run the following commands:
 
+> This solution was tested in Android device
+
 1. Installing with:
     ```sh
     yarn
