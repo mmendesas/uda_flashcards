@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Constants } from 'expo'
-import { createMaterialTopTabNavigator, createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
+import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from "react-navigation";
 
 // redux
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { black, white, green } from './utils/colors'
+import { black, white } from './utils/colors'
 import NewDeck from './components/NewDeck'
 import DeckList from './components/DeckList';
 import Deck from './components/Deck'
@@ -47,7 +47,8 @@ const TabNavigator = createMaterialTopTabNavigator({
         shadowRadius: 0,
         shadowOpacity: 1
       }
-    }
+    },
+    bounces: false
   })
 
 const headerStyle = {
