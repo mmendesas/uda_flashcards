@@ -30,6 +30,12 @@ In the project directory, you can run the following commands:
 3. Just follow the instructions presented on the terminal
     > You will need to configure an emulator to test this solution, or just scan the **QR code** using the Expo App
 
+## App Info
+
+You can see this app at expo:
+ * [expo link](https://expo.io/@mmendesas/uda_flashcards)
+ * [download apk](https://expo.io/artifacts/b735cf2c-cdd6-4d50-803a-b6a1bffdbd5c)
+
 ## Built With
 
 - [Create React Native App](https://github.com/react-community/create-react-native-app) - Create a React Native app on any OS with no build config.
