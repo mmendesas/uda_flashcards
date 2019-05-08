@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions';
 import { red } from '../utils/colors';
+import DeckViewDetails from './DeckViewDetails'
 
 class DeckList extends Component {
 
@@ -27,8 +28,10 @@ class DeckList extends Component {
               style={styles.deckItem} key={key}
               onPress={() => navigation.navigate('Deck', { title: key })}
             >
-              <Text style={styles.title}>{decks[key].title}</Text>
-              <Text style={styles.number}>{decks[key].questions.length} cards</Text>
+              <DeckViewDetails
+                title={decks[key].title}
+                questions={decks[key].questions}
+              />
             </TouchableOpacity>
           )) : (
               <View style={styles.container}>
@@ -55,10 +58,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     alignSelf: 'center'
-  },
-  number: {
-    alignSelf: 'center',
-    marginBottom: 20
   }
 })
 

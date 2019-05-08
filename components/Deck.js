@@ -4,6 +4,8 @@ import { black, white, gray } from '../utils/colors'
 
 import { connect } from 'react-redux'
 
+import DeckViewDetails from './DeckViewDetails'
+
 class Deck extends Component {
 
   static navigationOptions = {
@@ -16,8 +18,10 @@ class Deck extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.number}>{questions.length} cards</Text>
+        <DeckViewDetails
+          title={title}
+          questions={questions}
+        />
         <TouchableOpacity
           style={[styles.button, { backgroundColor: white }]}
           onPress={() => navigation.navigate('NewCard', { title: deck.title })}
@@ -41,16 +45,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 35,
-    alignSelf: 'center'
-  },
-  number: {
-    fontSize: 18,
-    alignSelf: 'center',
-    marginBottom: 20,
-    color: gray
   },
   button: {
     alignItems: 'center',
