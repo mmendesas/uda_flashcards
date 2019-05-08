@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { black, white, gray } from '../utils/colors'
-
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers'
 import { connect } from 'react-redux'
 
 import DeckViewDetails from './DeckViewDetails'
@@ -11,6 +11,14 @@ class Deck extends Component {
   static navigationOptions = {
     title: 'Deck',
   };
+
+  startQuiz = () => {
+    const { navigation, deck: { title } } = this.props
+    navigation.navigate('Quiz', { title })
+
+    // if start see deck reset notification
+    clearLocalNotification().then(setLocalNotification)
+  }
 
   render() {
     const { deck, navigation } = this.props
@@ -30,7 +38,7 @@ class Deck extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: black }]}
-          onPress={() => navigation.navigate('Quiz', { title })}
+          onPress={this.startQuiz}
           disabled={questions.length === 0}
         >
           <Text style={{ color: white }}>Start Quiz</Text>

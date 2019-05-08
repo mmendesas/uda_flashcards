@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Constants } from 'expo'
 import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from "react-navigation";
+import { setLocalNotification } from './utils/helpers'
 
 // redux
 import { createStore } from 'redux'
@@ -99,6 +100,11 @@ const MainNavigator = createStackNavigator({
 const MainContainer = createAppContainer(MainNavigator)
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
