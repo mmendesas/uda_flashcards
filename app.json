@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Flashcards",
+    "description": "A flashcard app to control yours cards",
     "slug": "uda_flashcards",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -11,6 +12,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "notification": {
+      "icon": "./assets/icon.png"
+    },
+    "android": {
+      "package": "org.uda_flashcards.exp"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
