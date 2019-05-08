@@ -17,10 +17,11 @@ class NewDeck extends Component {
     const { title } = this.state
 
     saveDeckTitle(title)
-      .then((deck) => dispatch(addDeck(deck)))
-
+      .then((deck) => {
+        dispatch(addDeck(deck))
+        navigation.navigate('Deck', { title })
+      })
     this.setState(() => ({ title: '' }))
-    navigation.navigate('Decks')
   }
 
   render() {
